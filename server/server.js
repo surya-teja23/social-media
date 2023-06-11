@@ -8,11 +8,8 @@ const corsOptions = require("./config/corsOptions");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const path = require("path");
-const { fileURLToPath } = require('url')
+const { fileURLToPath } = require("url");
 const PORT = process.env.PORT || 3500;
-// const User = require("./model/User.js");
-// const Post = require("./model/Post.js");
-// const { users, posts } = require("./data/index.js")
 const app = express();
 
 // Connect to MongoDB
@@ -40,7 +37,5 @@ app.use("/posts", require("./routes/posts"));
 
 mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB");
-  // User.insertMany(users);
-  // Post.insertMany(posts);
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });

@@ -12,11 +12,11 @@ import Modal from "@mui/material/Modal";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { Link } from "@mui/material";
-import { useDispatch } from 'react-redux'
-import { setLogin } from '../features/authSlice'
+import { useDispatch } from "react-redux";
+import { setLogin } from "../features/authSlice";
 
 export default function Login() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -43,20 +43,25 @@ export default function Login() {
 
     try {
       if (!email.match(validEmailRegex)) throw Error("Invalid Email");
-      const res = await fetch("http://localhost:3500/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
+      const res = await fetch(
+        "https://social-media-7cwn.onrender.com/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
 
       const data = await res.json();
       if (!res.ok) throw Error(data.message);
-      dispatch(setLogin({
-        user: data.user,
-        token: data.accessToken 
-      }))
+      dispatch(
+        setLogin({
+          user: data.user,
+          token: data.accessToken,
+        })
+      );
       setIsLoading(false);
       setMessage("Login Succesful");
       setTimeout(() => {

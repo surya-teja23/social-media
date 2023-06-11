@@ -47,10 +47,13 @@ export default function SignUp() {
 
     try {
       if (!file) throw Error("Profile Pic Required");
-      const res = await fetch("http://localhost:3500/auth/register", {
-        method: "POST",
-        body: user,
-      });
+      const res = await fetch(
+        "https://social-media-7cwn.onrender.com/auth/register",
+        {
+          method: "POST",
+          body: user,
+        }
+      );
 
       const data = await res.json();
       if (!res.ok) throw Error(data.message);
@@ -68,7 +71,12 @@ export default function SignUp() {
   }
 
   return (
-    <Container bgcolor="background.default" color="text.primary" maxWidth="xs" sx={{ pt: 12 }}>
+    <Container
+      bgcolor="background.default"
+      color="text.primary"
+      maxWidth="xs"
+      sx={{ pt: 12 }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -152,7 +160,7 @@ export default function SignUp() {
                 fullWidth
                 sx={{
                   p: 2,
-                  fontSize: 20
+                  fontSize: 20,
                 }}
               >
                 {!fileName

@@ -12,7 +12,7 @@ export default function FriendList({ userId }) {
 
   const getFriends = async () => {
     const response = await fetch(
-      `http://localhost:3500/users/${userId}/friends`,
+      `https://social-media-7cwn.onrender.com/users/${userId}/friends`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },

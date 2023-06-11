@@ -129,7 +129,7 @@ export default function Navbar() {
           >
             <AvatarWidget
               alt={user.firstName}
-              src={`http://localhost:3500/profile/${user.picturePath}`}
+              src={`https://social-media-7cwn.onrender.com/profile/${user.picturePath}`}
               onClick={() => setShortMenuOpen(true)}
               sx={{}}
             />

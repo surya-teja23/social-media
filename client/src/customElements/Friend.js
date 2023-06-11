@@ -23,7 +23,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 
   const patchFriend = async () => {
     const response = await fetch(
-      `http://localhost:3500/users/${_id}/${friendId}`,
+      `https://social-media-7cwn.onrender.com/users/${_id}/${friendId}`,
       {
         method: "PATCH",
         headers: {
@@ -41,7 +41,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
       <FlexBetween gap="1rem">
         <AvatarWidget
           alt={name}
-          src={`http://localhost:3500/profile/${userPicturePath}`}
+          src={`https://social-media-7cwn.onrender.com/profile/${userPicturePath}`}
           onClick={() => navigate(`/profile/${friendId}`)}
         />
         <Box

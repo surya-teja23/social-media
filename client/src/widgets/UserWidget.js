@@ -24,10 +24,13 @@ export default function UserWidget({ userId, picturePath }) {
 
   const getUser = async () => {
     try {
-      const response = await fetch(`http://localhost:3500/users/${userId}`, {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await fetch(
+        `https://social-media-7cwn.onrender.com/users/${userId}`,
+        {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       const data = await response.json();
       setUser(data);
     } catch (err) {
@@ -62,7 +65,7 @@ export default function UserWidget({ userId, picturePath }) {
         <FlexBetween gap="1rem">
           <AvatarWidget
             alt={firstName}
-            src={`http://localhost:3500/profile/${picturePath}`}
+            src={`https://social-media-7cwn.onrender.com/profile/${picturePath}`}
           />
           <Box>
             <Typography
@@ -77,9 +80,7 @@ export default function UserWidget({ userId, picturePath }) {
             >
               {firstName} {lastName}
             </Typography>
-            <Typography color={medium}>
-              {friends.length} friends
-            </Typography>
+            <Typography color={medium}>{friends.length} friends</Typography>
           </Box>
         </FlexBetween>
         <ManageAccountsOutlined />

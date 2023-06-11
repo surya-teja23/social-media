@@ -31,14 +31,17 @@ export default function PostWidget({
   const likeCount = Object.keys(likes).length;
 
   const patchLike = async () => {
-    const response = await fetch(`http://localhost:3500/posts/${postId}/like`, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ userId: loggedInUserId }),
-    });
+    const response = await fetch(
+      `https://social-media-7cwn.onrender.com/posts/${postId}/like`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: loggedInUserId }),
+      }
+    );
     const updatedPost = await response.json();
     dispatch(setPost({ post: updatedPost }));
   };
@@ -63,7 +66,7 @@ export default function PostWidget({
             objectFit: "cover",
             objectPosition: "center",
           }}
-          src={`http://localhost:3500/posts/${picturePath}`}
+          src={`https://social-media-7cwn.onrender.com/posts/${picturePath}`}
         />
       )}
       <FlexBetween mt="0.25rem">

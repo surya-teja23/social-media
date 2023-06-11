@@ -9,21 +9,27 @@ export default function PostsWidget({ userId, isProfile = false }) {
   const token = useSelector((state) => state.token);
 
   const getPosts = async () => {
-    const response = await fetch("http://localhost:3500/posts", {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const response = await fetch(
+      "https://social-media-7cwn.onrender.com/posts",
+      {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
     const data = await response.json();
-    dispatch(setPosts({posts: data}));
+    dispatch(setPosts({ posts: data }));
   };
 
   const getUserPosts = async () => {
-    const response = await fetch(`http://localhost:3500/posts/${userId}`, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const response = await fetch(
+      `https://social-media-7cwn.onrender.com/posts/${userId}`,
+      {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
     const data = await response.json();
-    dispatch(setPosts({posts: data}));
+    dispatch(setPosts({ posts: data }));
   };
 
   useEffect(() => {

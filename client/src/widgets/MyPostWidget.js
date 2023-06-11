@@ -28,12 +28,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../features/authSlice";
 
 export default function MyPostWidget({ id, picturePath, firstName }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [isImage, setIsImage] = useState(false);
   const [image, setImage] = useState(null);
   const [post, setPost] = useState("");
-  const { _id } = useSelector(state => state.user)
-  const token = useSelector(state => state.token)
+  const { _id } = useSelector((state) => state.user);
+  const token = useSelector((state) => state.token);
   const [open, setOpen] = useState(false);
   const [error, setError] = useState("");
 
@@ -53,11 +53,14 @@ export default function MyPostWidget({ id, picturePath, firstName }) {
     setError("");
     setOpen(true);
     try {
-      const response = await fetch("http://localhost:3500/posts", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-        body: formData,
-      });
+      const response = await fetch(
+        "https://social-media-7cwn.onrender.com/posts",
+        {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+          body: formData,
+        }
+      );
       if (response.status === "404")
         throw Error(`${response.status} - ${response.statusText}`);
       if (response.status === "409")
@@ -66,7 +69,7 @@ export default function MyPostWidget({ id, picturePath, firstName }) {
         throw Error(`${response.status} - ${response.statusText}`);
       const posts = await response.json();
       if (!response.ok) throw Error(posts);
-      dispatch(setPosts({posts}))
+      dispatch(setPosts({ posts }));
       setImage(null);
       setPost("");
       setError("");
@@ -81,7 +84,7 @@ export default function MyPostWidget({ id, picturePath, firstName }) {
       <FlexBetween gap="1.5rem">
         <AvatarWidget
           alt={firstName}
-          src={`http://localhost:3500/profile/${picturePath}`}
+          src={`https://social-media-7cwn.onrender.com/profile/${picturePath}`}
         />
         <InputBase
           placeholder="What's on your mind..."
